@@ -13,7 +13,7 @@ export interface IInputProps {
     label?: string;
     disabled?: boolean;
     placeholder?: string;
-    type: EInputTypes | string;
+    type?: EInputTypes | string;
     setValue?: (text: string, key?: string) => void;
 }
 
