@@ -1,6 +1,7 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
+import { View, ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { View, useWindowDimensions, ScrollView } from 'react-native';
 
 // import Logo from '../../../assets/images/Logo_1.png';
 
@@ -9,14 +10,13 @@ import { withPublicNav } from '../../utils/hocs';
 import { ScreenView, Typography, Grid, Button, Input } from '../../components';
 
 const LogInScreen = () => {
+    const { t } = useTranslation();
     const navigation = useNavigation();
 
     const [data, setData] = React.useState({
         email: '',
         password: '',
     });
-
-    const { height } = useWindowDimensions();
 
     const onSignInPressed = () => {
         navigation.navigate('DeliveryScreen');
@@ -51,16 +51,13 @@ const LogInScreen = () => {
             <ScrollView showsVerticalScrollIndicator={false}>
                 <View style={styles.root}>
                     <Typography.Heading type="PRIMARY">
-                        Welcome
+                        {t('screen.login.header-01.text')}
                     </Typography.Heading>
                     <Typography.Heading>
-                        Back!
+                        {t('screen.login.header-02.text')}
                     </Typography.Heading>
                     <Typography.Paragraph>
-                        Log in to manage your deliveries, 
-                        track progress, and ensure timely 
-                        arrivals. Your efficient delivery 
-                        experience starts here.
+                        {t('screen.login.paragraph.text')}
                     </Typography.Paragraph>
 
                     <Grid cols={1}>
@@ -68,8 +65,8 @@ const LogInScreen = () => {
                             type="EMAIL"
                             name="email"
                             value={data.email}
-                            label="Email Address"
                             setValue={onChangeValue}
+                            label={t('screen.login.form.email.text')}
                         />
                     </Grid>
 
@@ -77,24 +74,24 @@ const LogInScreen = () => {
                         <Input
                             type="PASSWORD"
                             name="password"
-                            label="Password"
                             value={data.password}
                             setValue={onChangeValue}
+                            label={t('screen.login.form.password.text')}
                         />
                     </Grid>
 
                     <Grid cols={1}>
                         <Button
-                            text="LOG IN"
                             onPress={onSignInPressed}
+                            text={t('screen.login.form.btn.login.text')}
                         />
                     </Grid>
 
                     <Grid cols={1}>
                         <Button
                             type="TERTIARY"
-                            text="Forgot Password"
                             onPress={onForgotPasswordPressed}
+                            text={t('screen.login.form.link.forgot.text')}
                         />
                     </Grid>
 
@@ -124,7 +121,7 @@ const LogInScreen = () => {
                         <Button
                             type="TERTIARY"
                             onPress={onRegisterPressed}
-                            text="Don't have an account? Create one!"
+                            text={t('screen.login.no-account.text')}
                         />
                     </Grid>
                 </View>
