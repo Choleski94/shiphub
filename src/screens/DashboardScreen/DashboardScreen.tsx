@@ -11,7 +11,9 @@ const DEFAULT_TABS = [
     {
         key: 'IN_TRANSIT',
         component: (
-            <Text>In-Transit</Text>
+            <Text>
+                In-Transit
+            </Text>
         )
     },
     {
