@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
-import { View, Text, ScrollView } from 'react-native';
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import { View, ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-import { withPublicNav } from '../../utils/hocs';
-import { ScreenView, Typography, Button, Input, Link, Grid } from '../../components/';
-// import SocialSignInButtons from '../../components/SocialSignInButtons';
-
 import styles from './RegisterScreen.styled';
-import Paragraph from '../../components/Typography/Paragraph';
+import { withPublicNav } from '../../utils/hocs';
+// import SocialSignInButtons from '../../components/SocialSignInButtons';
+import { ScreenView, Typography, Button, Input, Link, Grid } from '../../components/';
 
 const RegisterScreen = () => {
+    const { t } = useTranslation();
     const navigation = useNavigation();
 
     const [data, setData] = React.useState({
@@ -47,30 +47,27 @@ const RegisterScreen = () => {
             <ScrollView showsVerticalScrollIndicator={false}>
                 <View style={styles.root}>
                     <Typography.Heading type="PRIMARY">
-                        Join
+                        {t('screen.register.header-01.text')}
                     </Typography.Heading>
                     <Typography.Heading>
-                        Our Team!
+                        {t('screen.register.header-02.text')}
                     </Typography.Heading>
                     <Typography.Paragraph>
-                        Create an account to start managing 
-                        your deliveries efficiently. Enjoy 
-                        optimized routes, real-time updates, 
-                        and seamless delivery management.
+                        {t('screen.register.paragraph.text')}
                     </Typography.Paragraph>
 
                     <Grid cols={2}>
                         <Input
                             name="firstName"
-                            label="First Name"
                             value={data.firstName}
                             setValue={onChangeValue}
+                            label={t('screen.register.form.first-name.text')}
                         />
                         <Input
                             name="lastName"
-                            label="Last Name"
                             value={data.lastName}
                             setValue={onChangeValue}
+                            label={t('screen.register.form.last-name.text')}
                         />
                     </Grid>
 
@@ -78,9 +75,9 @@ const RegisterScreen = () => {
                         <Input
                             type="EMAIL"
                             name="email"
-                            label="Email"
                             value={data.email}
                             setValue={onChangeValue}
+                            label={t('screen.register.form.email.text')}
                         />
                     </Grid>
 
@@ -88,9 +85,9 @@ const RegisterScreen = () => {
                         <Input
                             type="PASSWORD"
                             name="password"
-                            label="Password"
                             value={data.password}
                             setValue={onChangeValue}
+                            label={t('screen.register.form.password.text')}
                         />
                     </Grid>
 
@@ -98,36 +95,36 @@ const RegisterScreen = () => {
                         <Input
                             type="PASSWORD"
                             name="passwordRepeat"
-                            label="Confirm Password"
                             setValue={onChangeValue}
                             value={data.passwordRepeat}
+                            label={t('screen.register.form.confirm-password.text')}
                         />
                     </Grid>
 
                     <Grid cols={1}>
                         <Button
-                            text="CONTINUE"
                             onPress={onRegisterPressed}
+                            text={t('screen.register.form.link.continue.text')}
                         />
                     </Grid>
 
-                    <Paragraph>
-                        By registering, you confirm that you accept our
+                    <Typography.Paragraph>
+                        {t('screen.register.form.terms-privacy-01.text')}
                         <Link onPress={onTermsOfUsePressed}>
-                            Terms of Use
+                            {t('screen.register.form.link.terms.text')}
                         </Link>
-                        and
+                        {t('screen.register.form.terms-privacy-02.text')}
                         <Link onPress={onPrivacyPressed}>
-                            Privacy Policy
+                            {t('screen.register.form.link.privacy.text')}
                         </Link>
-                    </Paragraph>
+                    </Typography.Paragraph>
 
                     {/* <SocialSignInButtons /> */}
 
                     <Button
                         type="TERTIARY"
                         onPress={onLogInPressed}
-                        text="Have an account? Log In!"
+                        text={t('screen.register.form.btn.login.text')}
                     />
                 </View>
             </ScrollView>
