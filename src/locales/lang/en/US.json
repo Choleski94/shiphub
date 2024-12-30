@@ -1,0 +1,29 @@
+{
+	"meta.title.text": "Crypolio - Easily track & manage all your cryptocurrency investments",
+	"meta.description.text": "Crypolio, the secure platform for tracking and managing all your favorite cryptocurrencies, including Bitcoin, Ethereum, Litecoin, and more, all in one convenient place.",
+	"meta.brand.text": "crypolio",
+
+
+	"nav.account.referral-qr.text": "Referral qr code",
+	"nav.account.settings.text": "Settings",
+	"nav.account.access-log.text": "Access logs",
+	"nav.account.log-out.text": "Log out",
+	"nav.account.greetings.text": "Welcome",
+
+
+	"nav.primary.dashboard.text": "Dashboard",
+	"nav.primary.portfolios.text": "Portoflios",
+	"nav.primary.wallet.text": "Wallet",
+	"nav.primary.help.text": "Help",
+	"nav.primary.activity.text": "Activity",
+	"nav.primary.system.text": "System",
+	"nav.primary.users.text": "Users",
+	"nav.primary.markets.text": "Markets",
+	"nav.primary.exchanges.text": "Exchanges",
+	"nav.primary.messaging.text": "Messaging",
+	"nav.primary.queue.text": "Queue",
+	"nav.primary.accounts.text": "Accounts",
+	"nav.primary.templates.text": "Templates",
+	"nav.primary.kyc-approved.text": "KYC Approved",
+	"nav.primary.kyc-application.text": "KYC Application"
+}
