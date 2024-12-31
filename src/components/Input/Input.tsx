@@ -52,7 +52,12 @@ const Input: React.FC<IInputProps> = ({
     return (
         <View style={styles.root}>
             {hasLabel && (
-               <Text style={styles.label}>
+               <Text 
+                    style={[
+                        styles.label,
+                        error ? styles.errorMessage : null,
+                    ]}
+                >
                     {label}
                </Text> 
             )}
