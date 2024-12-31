@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, Pressable, GestureResponderEvent } from 'react-native';
+import { Text, Pressable, GestureResponderEvent, View, ActivityIndicator } from 'react-native';
 
 import styles from './Button.styled';
 
@@ -7,6 +7,7 @@ export interface IButtonProps {
     text: string;
     bgColor?: string;
     fgColor?: string;
+    loading?: boolean;
     size?: 'xs' | 'sm' | 'md' | 'lg';
     type?: 'PRIMARY' | 'SECONDARY' | 'TERTIARY' | 'DISABLED' | 'SUCCESS' | 'DANGER' | 'WARNING';
     onPress: (event: GestureResponderEvent) => void;
@@ -18,6 +19,7 @@ const Button: React.FC<IButtonProps> = ({
     bgColor,
     fgColor,
     size = 'md',
+    loading = false,
     type = 'PRIMARY',
 }) => {
     const [containerStyle, containerSizeStyle, textStyle, textSizeStyle] = React.useMemo(() => {
@@ -44,16 +46,22 @@ const Button: React.FC<IButtonProps> = ({
                 bgColor ? { backgroundColor: bgColor } : {},   
             ]}
         >
-            <Text 
-                style={[
-                    textSizeStyle,
-                    styles.text, 
-                    textStyle,
-                    fgColor ? { color: fgColor } : {},
-                ]}
-            >
-                 {text}
-            </Text>
+            {loading ? (
+                <View style={styles.spinnerContainer}>
+                    <ActivityIndicator color={fgColor || 'white'} size="small" />
+                </View>
+            ) : (
+                <Text 
+                    style={[
+                        textSizeStyle,
+                        styles.text, 
+                        textStyle,
+                        fgColor ? { color: fgColor } : {},
+                    ]}
+                >
+                    {text}
+                </Text>
+            )} 
         </Pressable>
     );
 };

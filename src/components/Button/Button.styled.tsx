@@ -75,6 +75,13 @@ const styles = StyleSheet.create({
     text_WARNING: {
         color: '#212529',
     },
+    // Spinner
+    spinnerContainer: {
+        width: '100%',
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+    }
 });
 
 export default styles;
