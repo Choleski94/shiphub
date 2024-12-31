@@ -1,29 +1,83 @@
 {
-	"meta.title.text": "Crypolio - Easily track & manage all your cryptocurrency investments",
-	"meta.description.text": "Crypolio, the secure platform for tracking and managing all your favorite cryptocurrencies, including Bitcoin, Ethereum, Litecoin, and more, all in one convenient place.",
-	"meta.brand.text": "crypolio",
+	"screen.welcome.brand.text": "Ship",
+	"screen.welcome.brand.accent.text": "Hub",
+	"screen.welcome.title.text": "Welcome to",
+	"screen.welcome.description.text": "We're glad to have you on board. Your ID verification is in progress and you can check the status in the profile section of the app.",
+	"screen.welcome.form.continue.text": "CONTINUE",
 
 
-	"nav.account.referral-qr.text": "Referral qr code",
-	"nav.account.settings.text": "Settings",
-	"nav.account.access-log.text": "Access logs",
-	"nav.account.log-out.text": "Log out",
-	"nav.account.greetings.text": "Welcome",
+	"form.confirm.empty.error.text": "Can't be blank",
+	"form.confirm.first-name.error.text": "Please enter a valid first name",
+	"form.confirm.last-name.error.text": "Please enter a valid last name",
+	"form.confirm.email.error.text": "Please enter a valid email",
+	"form.confirm.password.error.text": "Please enter a valid 8 character long password",
+	"form.confirm.password-confirm.error.text": "Password don't match",
+
+	"success.CODE_SENT.text": "Please check your inbox, we have just sent a reset code link to the email address associated with your account.",
 
 
-	"nav.primary.dashboard.text": "Dashboard",
-	"nav.primary.portfolios.text": "Portoflios",
-	"nav.primary.wallet.text": "Wallet",
-	"nav.primary.help.text": "Help",
-	"nav.primary.activity.text": "Activity",
-	"nav.primary.system.text": "System",
-	"nav.primary.users.text": "Users",
-	"nav.primary.markets.text": "Markets",
-	"nav.primary.exchanges.text": "Exchanges",
-	"nav.primary.messaging.text": "Messaging",
-	"nav.primary.queue.text": "Queue",
-	"nav.primary.accounts.text": "Accounts",
-	"nav.primary.templates.text": "Templates",
-	"nav.primary.kyc-approved.text": "KYC Approved",
-	"nav.primary.kyc-application.text": "KYC Application"
+	"error.EMAIL-TAKEN.text": "Email already taken",
+	"error.ACCOUNT_NOT_CREATED.text": "Email already taken",
+	"error.ACCOUNT_BLOCKED.text": "Ip temporarily blocked",
+	"error.NOT-PERMITTED.text": "User registration disable",
+	"error.SERVER_ERROR.text": "Sorry we are not able to process your request Please try again later",
+	"error.AUTH_FAILED.text": "Your email and password combination does not match an existing account",
+	"error.ACCOUNT_NOT_CPROCESS.text": "Sorry we are not able to process your request Please try again later",
+
+
+	"screen.login.header-01.text": "Welcome",
+	"screen.login.header-02.text": "Back!",
+	"screen.login.paragraph.text": "Log in to manage your deliveries, track progress, and ensure timely arrivals. Your efficient delivery experience starts here.",
+	"screen.login.form.email.text": "Email Address",
+	"screen.login.form.password.text": "Password",
+	"screen.login.form.link.forgot.text": "Forgot Password",
+	"screen.login.no-account.text": "Don't have an account? Create one!",
+	"screen.login.form.btn.login.text": "LOG IN",
+
+
+	"screen.register.header-01.text": "Join",
+	"screen.register.header-02.text": "Our Team!",
+	"screen.register.paragraph.text": "Create an account to start managing your deliveries efficiently. Enjoy optimized routes, real-time updates, and seamless delivery management.",
+	"screen.register.form.first-name.text": "First Name",
+	"screen.register.form.last-name.text": "Last Name",
+	"screen.register.form.email.text": "Email",
+	"screen.register.form.password.text": "Password",
+	"screen.register.form.confirm-password.text": "Confirm password",
+	"screen.register.has-account.text": "Already have an account?",
+	"screen.register.form.btn.login.text": "Have an account? Log In!",
+	"screen.register.form.link.continue.text": "CONTINUE",
+	"screen.register.form.terms-privacy-01.text": "By registering, you confirm that you accept our",
+	"screen.register.form.terms-privacy-02.text": "and",
+	"screen.register.form.link.terms.text": "Terms of Use",
+	"screen.register.form.link.privacy.text": "Privacy Policy",
+
+
+	"screen.confirm-email.header-01.text": "Almost",
+	"screen.confirm-email.header-02.text": "There!",
+	"screen.confirm-email.paragraph.text": "To ensure the security of our platform, please provide your phone number and take a photo of your valid ID to verify your identity and protect your account.",
+	"screen.confirm-email.code-label.text": "Confirmation Code",
+	"screen.confirm-email.code.placeholder.text": "Enter your confirmation code!",
+	"screen.confirm-email.form.btn.login.text": "Back to Log In",
+	"screen.confirm-email.form.continue.text": "CONTINUE",
+	"screen.confirm-email.form.resend.text": "RESEND CODE",
+
+
+	"screen.forgot_password.header-01.text": "Forgot",
+	"screen.forgot_password.header-02.text": "Password!",
+	"screen.forgot_password.paragraph.text": "Enter your email below to receive a password reset code and get back to managing deliveries and tracking progress, and ensuring timely arrivals.",
+	"screen.forgot_password.form.email.text": "Email Address",
+	"screen.forgot_password.form.btn.recover.text": "CONTINUE",
+	"screen.forgot_password.login.text": "Back to Log In",
+
+
+	"screen.new_password.header-01.text": "Reset",
+	"screen.new_password.header-02.text": "Password!",
+	"screen.new_password.paragraph.text": "Enter your password reset code with your new password and get back to managing deliveries and tracking progress, and ensuring timely arrivals.",
+	"screen.new_password.form.code.text": "Code",
+	"screen.new_password.form.password.text": "New Password",
+	"screen.new_password.form.password-confirm.text": "Confirm Password",
+	"screen.new_password.form.continue.text": "CONTINUE",
+	"screen.new_password.login.text": "Back to Log In",
+
+
 }

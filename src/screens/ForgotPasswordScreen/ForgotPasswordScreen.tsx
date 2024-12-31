@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { View, ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
@@ -7,6 +8,7 @@ import styles from './ForgotPasswordScreen.styled';
 import { ScreenView, Typography, Grid, Button, Input } from '../../components';
 
 const ForgotPasswordScreen = () => {
+    const { t } = useTranslation();
     const navigation = useNavigation();
 
     const [data, setData] = React.useState({
@@ -32,15 +34,13 @@ const ForgotPasswordScreen = () => {
             <ScrollView showsVerticalScrollIndicator={false}>
                 <View style={styles.root}>
                     <Typography.Heading type="PRIMARY">
-                        Forgot
+                        {t('screen.forgot_password.header-01.text')}
                     </Typography.Heading>
                     <Typography.Heading>
-                        Password!
+                        {t('screen.forgot_password.header-02.text')}
                     </Typography.Heading>
                     <Typography.Paragraph>
-                        Enter your email below to receive a password 
-                        reset code and get back to managing deliveries 
-                        and tracking progress, and ensuring timely arrivals.
+                        {t('screen.forgot_password.paragraph.text')}
                     </Typography.Paragraph>
 
                     <Grid cols={1}>
@@ -48,23 +48,24 @@ const ForgotPasswordScreen = () => {
                             type="EMAIL"
                             name="email"
                             value={data.email}
-                            label="Email Address"
                             setValue={onChangeValue}
+                            label={t('screen.forgot_password.form.email.text')}
+
                         />
                     </Grid>
 
                     <Grid cols={1}>
                         <Button
-                            text="CONTINUE"
                             onPress={onSendPressed}
+                            text={t('screen.forgot_password.form.btn.recover.text')}
                         />
                     </Grid>
 
                     <Grid cols={1}>
                         <Button
                             type="TERTIARY"
-                            text="Back to Log In"
                             onPress={onLogInPress}
+                            text={t('screen.forgot_password.login.text')}
                         />
                     </Grid>
                 </View>

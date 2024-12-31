@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { View, ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
@@ -7,6 +8,7 @@ import styles from './ConfirmEmailScreen.styled';
 import { ScreenView, Typography, Grid, Button, Input } from '../../components';
 
 const ConfirmEmailScreen = () => {
+    const { t } = useTranslation();
     const navigation = useNavigation();
 
     const [data, setData] = React.useState({
@@ -36,16 +38,13 @@ const ConfirmEmailScreen = () => {
             <ScrollView showsVerticalScrollIndicator={false}>
                 <View style={styles.root}>
                     <Typography.Heading type="PRIMARY">
-                        Almost
+                        {t('screen.confirm-email.header-01.text')}
                     </Typography.Heading>
                     <Typography.Heading>
-                        There!
+                        {t('screen.confirm-email.header-02.text')}
                     </Typography.Heading>
                     <Typography.Paragraph>
-                        To ensure the security of our platform, 
-                        please provide your phone number and 
-                        take a photo of your valid ID to verify 
-                        your identity and protect your account.
+                        {t('screen.confirm-email.paragraph.text')}
                     </Typography.Paragraph>
 
                     <Grid cols={1}>
@@ -53,31 +52,31 @@ const ConfirmEmailScreen = () => {
                             name="code"
                             value={data.code}
                             setValue={onChangeValue}
-                            label="Confirmation Code"
-                            placeholder="Enter your confirmation code!"
+                            label={t('screen.confirm-email.code-label.text')}
+                            placeholder={t('screen.confirm-email.code.placeholder.text')}
                         />
                     </Grid>
 
                     <Grid cols={1}>
                         <Button
-                            text="CONTINUE"
                             onPress={onConfirmPressed}
+                            text={t('screen.confirm-email.form.continue.text')}
                         />
                     </Grid>
 
                     <Grid cols={1}>
                         <Button
                             type="SECONDARY"
-                            text="RESEND CODE"
                             onPress={onResendPressed}
+                            text={t('screen.confirm-email.form.resend.text')}
                         />
                     </Grid>
 
                     <Grid cols={1}>
                         <Button
                             type="TERTIARY"
-                            text="Back to Log In"
                             onPress={onLogInPress}
+                            text={t('screen.confirm-email.form.btn.login.text')}
                         />
                     </Grid>
                 </View>

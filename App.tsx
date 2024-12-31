@@ -1,5 +1,7 @@
 import 'react-native-get-random-values';
 
+import './src/locales/service';
+
 import React from 'react';
 import { Provider } from 'react-redux';
 // import { StatusBar } from 'expo-status-bar';
@@ -25,6 +27,7 @@ import {
 	DeliverySummaryScreen,
 } from './src/screens';
 import styles from './App.styled';
+import i18next from './src/locales/service';
 import { NavigationBar } from './src/components';
 import rootReducer, { preloadedState } from './src/store';
 

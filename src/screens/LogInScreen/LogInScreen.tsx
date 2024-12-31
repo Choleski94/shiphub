@@ -3,10 +3,9 @@ import { useTranslation } from 'react-i18next';
 import { View, ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-// import Logo from '../../../assets/images/Logo_1.png';
-
 import styles from './LogInScreen.styled';
 import { withPublicNav } from '../../utils/hocs';
+// import Logo from '../../../assets/images/Logo_1.png';
 import { ScreenView, Typography, Grid, Button, Input } from '../../components';
 
 const LogInScreen = () => {

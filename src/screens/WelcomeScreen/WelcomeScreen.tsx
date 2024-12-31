@@ -1,5 +1,6 @@
 import React from 'react';
-import { View, Image, ScrollView } from 'react-native';
+import { useTranslation } from 'react-i18next';
+import { View, ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 import styles from './WelcomeScreen.styled';
@@ -7,20 +8,11 @@ import { withPublicNav } from '../../utils/hocs';
 import { ScreenView, Typography, Illustration, Button, Grid } from '../../components';
 
 const WelcomeScreen = () => {
+    const { t } = useTranslation();
     const navigation = useNavigation();
-
-    const [code, setCode] = React.useState('');
 
     const onConfirmPressed = () => {
         navigation.navigate('DeliveryScreen');
-    };
-
-    const onLogInPress = () => {
-        navigation.navigate('LogInScreen');
-    };
-
-    const onResendPressed = () => {
-        console.warn('onResendPressed');
     };
 
     return (
@@ -28,21 +20,18 @@ const WelcomeScreen = () => {
             <ScrollView showsVerticalScrollIndicator={false}>
                 <View style={styles.root}>
                 <Typography.Heading type="PRIMARY">
-                        Welcome to
+                        {t('screen.welcome.title.text')}
                     </Typography.Heading>
                     <Typography.Heading>
                         <Typography.Inline color="#FFC107">
-                            Ship
+                            {t('screen.welcome.brand.text')}
                         </Typography.Inline>
                         <Typography.Inline type="PRIMARY">
-                            Hub!
+                            {t('screen.welcome.brand.accent.text')}
                         </Typography.Inline>
                     </Typography.Heading>
                     <Typography.Paragraph>
-                        We're glad to have you on board. Your ID 
-                        verification is in progress and you can 
-                        check the status in the profile section 
-                        of the app.
+                        {t('screen.welcome.description.text')}
                     </Typography.Paragraph>
 
                     <View style={styles.brandImg}>
@@ -53,8 +42,8 @@ const WelcomeScreen = () => {
 
                     <Grid cols={1}>
                         <Button
-                            text="CONTINUE"
                             onPress={onConfirmPressed}
+                            text={t('screen.welcome.form.continue.text')}
                         />
                     </Grid>
                 </View>

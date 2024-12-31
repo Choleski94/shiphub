@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { View, ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
@@ -7,6 +8,7 @@ import { withPublicNav } from '../../utils/hocs';
 import { ScreenView, Typography, Grid, Button, Input } from '../../components';
 
 const NewPasswordScreen = () => {
+    const { t } = useTranslation();
     const navigation = useNavigation();
 
     const [data, setData] = React.useState({
@@ -34,23 +36,21 @@ const NewPasswordScreen = () => {
             <ScrollView showsVerticalScrollIndicator={false}>
                 <View style={styles.root}>
                     <Typography.Heading type="PRIMARY">
-                        Reset
+                        {t('screen.new_password.header-01.text')}
                     </Typography.Heading>
                     <Typography.Heading>
-                        Password!
+                        {t('screen.new_password.header-02.text')}
                     </Typography.Heading>
                     <Typography.Paragraph>
-                        Enter your password reset code with your new 
-                        password and get back to managing deliveries 
-                        and tracking progress, and ensuring timely arrivals.
+                        {t('screen.new_password.paragraph.text')}
                     </Typography.Paragraph>
 
                     <Grid cols={1}>
                         <Input
                             name="code"
-                            label="Code"
                             value={data.code}
                             setValue={onChangeValue}
+                            label={t('screen.new_password.form.code.text')}
                         />
                     </Grid>
 
@@ -58,9 +58,9 @@ const NewPasswordScreen = () => {
                         <Input
                             type="PASSWORD"
                             name="password"
-                            label="New Password"
                             value={data.password}
                             setValue={onChangeValue}
+                            label={t('screen.new_password.form.password.text')}
                         />
                     </Grid>
 
@@ -68,24 +68,24 @@ const NewPasswordScreen = () => {
                         <Input
                             type="PASSWORD"
                             name="passwordRepeat"
-                            label="Confirm Password"
                             setValue={onChangeValue}
                             value={data.passwordRepeat}
+                            label={t('screen.new_password.form.password-confirm.text')}
                         />
                     </Grid>
     
                     <Grid cols={1}>
                         <Button
-                            text="CONTINUE"
                             onPress={onSubmitPressed}
+                            text={t('screen.new_password.form.continue.text')}
                         />
                     </Grid>
 
                     <Grid cols={1}>
                         <Button
                             type="TERTIARY"
-                            text="Back to Log In"
                             onPress={onLogInPressed}
+                            text={t('screen.new_password.login.text')}
                         />
                     </Grid>
                 </View>
