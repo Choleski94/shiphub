@@ -13,6 +13,7 @@
 	"form.confirm.password.error.text": "Please enter a valid 8 character long password",
 	"form.confirm.password-confirm.error.text": "Password don't match",
 
+
 	"success.CODE_SENT.text": "Please check your inbox, we have just sent a reset code link to the email address associated with your account.",
 
 
@@ -79,5 +80,40 @@
 	"screen.new_password.form.continue.text": "CONTINUE",
 	"screen.new_password.login.text": "Back to Log In",
 
+
+	"screen.profile-main.header.text": "Settings",
+	"screen.profile-main.paragraph.text": "Update your personal information and credentials.",
+
+	"screen.profile-main.verification.header.text": "Verification Status",
+	"screen.profile-main.verification.paragraph.text": "You can view the current status of your ID verification here.",
+
+	"screen.profile-main.option.email.header.text": "Change Email",
+	"screen.profile-main.option.password.header.text": "Change Password",
+	"screen.profile-main.option.phone.header.text": "Change Phone Number",
+
+	"screen.profile-main.logout.text": "LOG OUT",
+	"screen.profile-main.under-review.text": "Under Review",
+	"screen.profile-main.save.text": "SAVE CHANGES",
+	"screen.profile-main.discard.text": "DISCARD CHANGES",
+
+
+	"screen.profile-email.header.text": "Email Address",
+	"screen.profile-email.paragraph.text": "You can change your email address here to ensure you receive all important notifications.",
+
+	"screen.profile-email.form.email.text": "Current email address",
+	"screen.profile-email.form.email-confirm.text": "New email address",
+
+
+	"screen.profile-password.header.text": "Change Password",
+	"screen.profile-password.paragraph.text": "You can change your password here to keep your account secure.",
+
+	"screen.profile-password.form.password.text": "Confirm new password",
+	"screen.profile-password.form.password-new.text": "New password",
+
+	"screen.profile-phone.header.text": "Change Phone Number",
+	"screen.profile-phone.paragraph.text": "You can change your phone number here to stay updated with alerts and messages.",
+
+	"screen.profile-phone.form.phone.text": "Current phone number",
+	"screen.profile-phone.form.phone-new.text": "New phone number"
 
 }

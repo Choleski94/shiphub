@@ -1,11 +1,19 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { View, Text, TouchableOpacity } from 'react-native';
 
 import styles from './../../ProfileScreen.styled';
 import { Card, Illustration, Button } from '../../../../components';
-import { DEFAULT_PROFILE_OPTIONS } from './../../ProfileScreen.controller';
+import { DEFAULT_PROFILE_OPTIONS, DEFAULT_PROFILE_SECTIONS } from './../../ProfileScreen.controller';
 
 const ProfileMainSection = ({ onSectionPress }) => {
+    const { t } = useTranslation();
+
+    const messages = React.useMemo(() => ({
+        [DEFAULT_PROFILE_SECTIONS.EMAIL]: t('screen.profile-main.option.email.header.text'),
+        [DEFAULT_PROFILE_SECTIONS.PHONE]: t('screen.profile-main.option.phone.header.text'),
+        [DEFAULT_PROFILE_SECTIONS.PASSWORD]: t('screen.profile-main.option.password.header.text'),
+    }), []);
 
     React.useEffect(() => {
         onSectionPress();
@@ -20,8 +28,8 @@ const ProfileMainSection = ({ onSectionPress }) => {
     return (
         <>
             <Card
-                title="Settings"
-                description="Update your personal information and credentials."
+                title={t('screen.profile-main.header.text')}
+                description={t('screen.profile-main.paragraph.text')}
             >
                 {DEFAULT_PROFILE_OPTIONS.map((item) => (
                     <TouchableOpacity
@@ -38,7 +46,7 @@ const ProfileMainSection = ({ onSectionPress }) => {
                         </View>
                         <View style={styles.info}>
                             <Text style={styles.description}>
-                                {item.description}
+                                {messages[item?.id]}
                             </Text>
                         </View>
                         <Illustration.Icon
@@ -48,21 +56,21 @@ const ProfileMainSection = ({ onSectionPress }) => {
                 ))}
             </Card>
             <Card
-                title="Verification Status"
-                description="You can view the current status of your ID verification here."
+                title={t('screen.profile-main.verification.header.text')}
+                description={t('screen.profile-main.verification.paragraph.text')}
             >
                 <Button
                     type="DISABLED"
-                    text="Under Review"
                     onPress={onVerificationPressed}
+                    text={t('screen.profile-main.under-review.text')}
                 />
             </Card>
 
             <View style={styles.logout}>
                 <Button
                     type="DANGER"
-                    text="LOG OUT"
                     onPress={onLogOutPressed}
+                    text={t('screen.profile-main.logout.text')}
                 />
             </View>
         </>

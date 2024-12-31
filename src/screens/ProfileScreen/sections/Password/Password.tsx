@@ -1,10 +1,12 @@
 import React from 'react';
 import { View } from 'react-native';
+import { useTranslation } from 'react-i18next';
 
 import styles from './../../ProfileScreen.styled';
 import { Card, Button, Grid, Input } from '../../../../components';
 
 const ProfilePasswordSection = ({ onSectionPress }) => {
+    const { t } = useTranslation();
     const [data, setData] = React.useState({
         password: '',
         oldPassword: '',
@@ -27,8 +29,8 @@ const ProfilePasswordSection = ({ onSectionPress }) => {
     return (
         <>
             <Card
-                title="Change Password"
-                description="You can change your password here to keep your account secure."
+                title={t('screen.profile-password.header.text')}
+                description={t('screen.profile-password.paragraph.text')}
             >
                 <Grid cols={1}>
                     <Input
@@ -36,7 +38,7 @@ const ProfilePasswordSection = ({ onSectionPress }) => {
                         name="oldPassword"
                         value={data.oldPassword}
                         setValue={onChangeValue}
-                        label="Confirm new password"
+                        label={t('screen.profile-password.form.password.text')}
                     />
                 </Grid>
 
@@ -46,7 +48,7 @@ const ProfilePasswordSection = ({ onSectionPress }) => {
                         name="password"
                         value={data.password}
                         setValue={onChangeValue}
-                        label="New password"
+                        label={t('screen.profile-password.form.password-new.text')}
                     />
                 </Grid>
             </Card>
@@ -54,13 +56,13 @@ const ProfilePasswordSection = ({ onSectionPress }) => {
             <View style={styles.logout}>
                 <Button
                     type="PRIMARY"
-                    text="SAVE CHANGES"
                     onPress={onSavePressed}
+                    text={t('screen.profile-main.save.text')}
                 />
                 <Button
                     type="DANGER"
-                    text="DISCARD CHANGES"
                     onPress={onExitPressed}
+                    text={t('screen.profile-main.discard.text')}
                 />
             </View>
         </>
