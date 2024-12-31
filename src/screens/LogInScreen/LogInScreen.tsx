@@ -115,8 +115,8 @@ const LogInScreen = () => {
                             type="EMAIL"
                             name="email"
                             value={data.email}
+                            error={errors?.email}
                             setValue={onChangeValue}
-                            error="Bruhh"
                             label={t('screen.login.form.email.text')}
                         />
                     </Grid>
