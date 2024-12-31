@@ -11,6 +11,7 @@ export interface IInputProps {
     name: string;
     value: string;
     label?: string;
+    error?: string;
     disabled?: boolean;
     placeholder?: string;
     type?: EInputTypes | string;

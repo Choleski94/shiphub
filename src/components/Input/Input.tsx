@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, TextInput } from 'react-native';
 
-import styles from './Input.styled';
+import styles, { DEFAULT_ERROR_COLOR } from './Input.styled';
 import Illustration from '../Illustration';
 import { EInputTypes, IInputProps, DEFAULT_INPUT_ICONS } from './Input.controller';
 
@@ -9,6 +9,7 @@ const Input: React.FC<IInputProps> = ({
     name,
     value, 
     label, 
+    error,
     setValue, 
     disabled,
     placeholder,
@@ -57,13 +58,20 @@ const Input: React.FC<IInputProps> = ({
             )}
             <View style={[
                 styles.container,
-                disabled ? styles.disabledContainer : null
+                disabled ? styles.disabledContainer : null,
+                error ? styles.containerError : null,
             ]}>
                 {hasIcon && (
                     <View style={styles.icon}>
                         <Illustration.Icon
                             name={DEFAULT_INPUT_ICONS[type]}
-                            color={disabled ? '#a9a9a9' : null}
+                            color={
+                                error ? (
+                                    DEFAULT_ERROR_COLOR
+                                ) : (
+                                    disabled ? '#a9a9a9' : null
+                                )
+                            }
                         />
                     </View>
                 )}
@@ -80,6 +88,11 @@ const Input: React.FC<IInputProps> = ({
                     ]} 
                 />
             </View>
+            {error && (
+                <Text style={styles.errorMessage}>
+                    {error}
+                </Text>
+            )}
         </View>
     );
 }
