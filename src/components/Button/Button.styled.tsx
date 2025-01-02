@@ -81,7 +81,19 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
-    }
+    },
+    spinner_size_xs: {
+        paddingVertical: 6,
+    },
+    spinner_size_sm: {
+        paddingVertical: 6,
+    },
+    spinner_size_md: {
+        paddingVertical: 9,
+    },
+    spinner_size_lg: {
+        paddingVertical: 6,
+    },
 });
 
 export default styles;

@@ -22,46 +22,47 @@ const Button: React.FC<IButtonProps> = ({
     loading = false,
     type = 'PRIMARY',
 }) => {
-    const [containerStyle, containerSizeStyle, textStyle, textSizeStyle] = React.useMemo(() => {
+    const [containerStyle, containerSizeStyle, spinnerSizeStyle, textStyle, textSizeStyle] = React.useMemo(() => {
         const textKey = `text_${type}`;
         const textSizeKey = `text_size_${size}`;
         const containerKey = `container_${type}`;
+        const spinnerSizeKey = `spinner_size_${size}`;
         const containerSizeKey = `container_size_${size}`;
 
         return [
             styles[containerKey],
             styles[containerSizeKey],
+            styles[spinnerSizeKey],
             styles[textKey],
             styles[textSizeKey],
         ];
     }, [type]);
 
     return (
-        <Pressable 
-            onPress={onPress} 
+        <Pressable
+            onPress={onPress}
             style={[
-                containerSizeStyle,
-                styles.container, 
-                containerStyle,
-                bgColor ? { backgroundColor: bgColor } : {},   
+                containerSizeStyle, styles.container, containerStyle,
+                loading ? styles.spinnerContainer : null,
+                loading ? spinnerSizeStyle : null,
+                bgColor ? { backgroundColor: bgColor } : {},
             ]}
         >
             {loading ? (
-                <View style={styles.spinnerContainer}>
-                    <ActivityIndicator color={fgColor || 'white'} size="small" />
-                </View>
+                <ActivityIndicator
+                    color={fgColor || 'white'}
+                    size="small"
+                />
             ) : (
-                <Text 
+                <Text
                     style={[
-                        textSizeStyle,
-                        styles.text, 
-                        textStyle,
+                        textSizeStyle, styles.text, textStyle,
                         fgColor ? { color: fgColor } : {},
                     ]}
                 >
                     {text}
                 </Text>
-            )} 
+            )}
         </Pressable>
     );
 };
