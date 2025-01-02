@@ -43,9 +43,9 @@ const Button: React.FC<IButtonProps> = ({
             onPress={onPress}
             style={[
                 containerSizeStyle, styles.container, containerStyle,
+                bgColor ? { backgroundColor: bgColor } : {},
                 loading ? styles.spinnerContainer : null,
                 loading ? spinnerSizeStyle : null,
-                bgColor ? { backgroundColor: bgColor } : {},
             ]}
         >
             {loading ? (
