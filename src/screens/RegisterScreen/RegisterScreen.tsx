@@ -1,31 +1,51 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { View, ScrollView } from 'react-native';
+import { useForm, Controller } from 'react-hook-form';
 import { useNavigation } from '@react-navigation/native';
 
+import useApi from '../../api';
 import styles from './RegisterScreen.styled';
 import { withPublicNav } from '../../utils/hocs';
 // import SocialSignInButtons from '../../components/SocialSignInButtons';
 import { ScreenView, Typography, Button, Input, Link, Grid } from '../../components/';
 
 const RegisterScreen = () => {
+    const api = useApi();
+    const dispatch = useDispatch();
     const { t } = useTranslation();
     const navigation = useNavigation();
 
-    const [data, setData] = React.useState({
-        email: '',
-        lastName: '',
-        password: '',
-        firstName: '',
-        passwordRepeat: '',
+    const {
+        control,
+        handleSubmit,
+        formState: { errors, isSubmitting },
+    } = useForm({
+        defaultValues: {
+            email: '',
+            lastName: '',
+            password: '',
+            firstName: '',
+            passwordRepeat: '',
+        },
+        mode: 'all',
     });
 
-    const onRegisterPressed = () => {
-        navigation.navigate('ConfirmEmailScreen'); 
+    const errorMessages = {
+        empty: t('form.validation.empty.error.text'),
+        email: t('form.validation.email.error.text'),
     };
 
-    const onLogInPressed = () => {
-        navigation.navigate('LogInScreen');
+    const onSubmit = (data: any) => {
+        // api.user.login(data)
+        //     .then(() => {
+        //         // dispatch(logInUser(user));
+        //         navigation.navigate('ConfirmEmailScreen');
+        //     })
+        //     .catch((error) => {
+        //         console.error('Login error:', error);
+        //     });
     };
 
     const onTermsOfUsePressed = () => {
@@ -36,11 +56,9 @@ const RegisterScreen = () => {
         console.warn('onPrivacyPressed');
     };
 
-    const onChangeValue = (value: string, key?: string) => {
-        if (!key || !key.length) return;
+    const onRegisterPressed = () => handleSubmit(onSubmit)();
 
-        setData({ ...data, [key]: value });
-    }
+    const onLogInPressed = () => navigation.navigate('LogInScreen');
 
     return (
         <ScreenView withWhiteBg>
@@ -57,52 +75,157 @@ const RegisterScreen = () => {
                     </Typography.Paragraph>
 
                     <Grid cols={2}>
-                        <Input
+                        <Controller
                             name="firstName"
-                            value={data.firstName}
-                            setValue={onChangeValue}
-                            label={t('screen.register.form.first-name.text')}
+                            control={control}
+                            rules={{
+                                required: errorMessages.empty,
+                                validate: (value) => {
+                                    // First, check if the email is empty, then check for the format
+                                    if (!value) {
+                                        return errorMessages.empty;
+                                    }
+                                    // if (!validateEmail(value)) {
+                                    //     return t('form.validation.email.error.text'); // Custom error message for invalid email
+                                    // }
+                                    return true; // If email is valid, return true
+                                }
+                            }}
+                            render={({ field }) => (
+                                <Input
+                                    name="firstName"
+                                    value={field.value}
+                                    onBlur={field.onBlur}
+                                    setValue={field.onChange}
+                                    error={errors.firstName?.message}
+                                    label={t('screen.register.form.first-name.text')}
+                                />
+                            )}
                         />
-                        <Input
+                        <Controller
                             name="lastName"
-                            value={data.lastName}
-                            setValue={onChangeValue}
-                            label={t('screen.register.form.last-name.text')}
+                            control={control}
+                            rules={{
+                                required: errorMessages.empty,
+                                validate: (value) => {
+                                    // First, check if the email is empty, then check for the format
+                                    if (!value) {
+                                        return errorMessages.empty;
+                                    }
+                                    // if (!validateEmail(value)) {
+                                    //     return t('form.validation.email.error.text'); // Custom error message for invalid email
+                                    // }
+                                    return true; // If email is valid, return true
+                                }
+                            }}
+                            render={({ field }) => (
+                                <Input
+                                    name="lastName"
+                                    value={field.value}
+                                    onBlur={field.onBlur}
+                                    setValue={field.onChange}
+                                    error={errors.lastName?.message}
+                                    label={t('screen.register.form.last-name.text')}
+                                />
+                            )}
                         />
                     </Grid>
 
                     <Grid cols={1}>
-                        <Input
-                            type="EMAIL"
+                        <Controller
                             name="email"
-                            value={data.email}
-                            setValue={onChangeValue}
-                            label={t('screen.register.form.email.text')}
+                            control={control}
+                            rules={{
+                                required: errorMessages.empty,
+                                validate: (value) => {
+                                    // First, check if the email is empty, then check for the format
+                                    if (!value) {
+                                        return errorMessages.empty;
+                                    }
+                                    // if (!validateEmail(value)) {
+                                    //     return t('form.validation.email.error.text'); // Custom error message for invalid email
+                                    // }
+                                    return true; // If email is valid, return true
+                                }
+                            }}
+                            render={({ field }) => (
+                                <Input
+                                    name="email"
+                                    value={field.value}
+                                    onBlur={field.onBlur}
+                                    setValue={field.onChange}
+                                    error={errors.email?.message}
+                                    label={t('screen.register.form.email.text')}
+                                />
+                            )}
                         />
                     </Grid>
 
                     <Grid cols={1}>
-                        <Input
-                            type="PASSWORD"
+                        <Controller
                             name="password"
-                            value={data.password}
-                            setValue={onChangeValue}
-                            label={t('screen.register.form.password.text')}
+                            control={control}
+                            rules={{
+                                required: errorMessages.empty,
+                                validate: (value) => {
+                                    // First, check if the email is empty, then check for the format
+                                    if (!value) {
+                                        return errorMessages.empty;
+                                    }
+                                    // if (!validateEmail(value)) {
+                                    //     return t('form.validation.email.error.text'); // Custom error message for invalid email
+                                    // }
+                                    return true; // If email is valid, return true
+                                }
+                            }}
+                            render={({ field }) => (
+                                <Input
+                                    type="PASSWORD"
+                                    name="password"
+                                    value={field.value}
+                                    onBlur={field.onBlur}
+                                    setValue={field.onChange}
+                                    error={errors.password?.message}
+                                    label={t('screen.register.form.password.text')}
+                                />
+                            )}
                         />
                     </Grid>
 
                     <Grid cols={1}>
-                        <Input
-                            type="PASSWORD"
+                        <Controller
                             name="passwordRepeat"
-                            setValue={onChangeValue}
-                            value={data.passwordRepeat}
-                            label={t('screen.register.form.confirm-password.text')}
+                            control={control}
+                            rules={{
+                                required: errorMessages.empty,
+                                validate: (value) => {
+                                    // First, check if the email is empty, then check for the format
+                                    if (!value) {
+                                        return errorMessages.empty;
+                                    }
+                                    // if (!validateEmail(value)) {
+                                    //     return t('form.validation.email.error.text'); // Custom error message for invalid email
+                                    // }
+                                    return true; // If email is valid, return true
+                                }
+                            }}
+                            render={({ field }) => (
+                                <Input
+                                    type="PASSWORD"
+                                    name="passwordRepeat"
+                                    value={field.value}
+                                    onBlur={field.onBlur}
+                                    setValue={field.onChange}
+                                    error={errors.passwordRepeat?.message}
+                                    label={t('screen.register.form.confirm-password.text')}
+                                />
+                            )}
                         />
                     </Grid>
 
                     <Grid cols={1}>
                         <Button
+                            loading={isSubmitting}
                             onPress={onRegisterPressed}
                             text={t('screen.register.form.link.continue.text')}
                         />
