@@ -34,6 +34,7 @@ const ProfilePhoneSection = ({ onSectionPress }) => {
             >
                 <Grid cols={1}>
                     <Input
+                        disabled
                         type="PHONE"
                         name="oldPhone"
                         value={data.oldPhone}

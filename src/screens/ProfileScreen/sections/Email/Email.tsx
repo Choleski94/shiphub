@@ -34,6 +34,7 @@ const ProfileEmailSection = ({ onSectionPress }) => {
             >
                 <Grid cols={1}>
                     <Input
+                        disabled
                         type="EMAIL"
                         name="oldEmail"
                         value={data.oldEmail}
