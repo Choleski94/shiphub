@@ -29,7 +29,9 @@ const ProfileMainSection = ({ onSectionPress }) => {
         navigation.navigate("LogInScreen");
     }
 
-    const onVerificationPressed = () => {}
+    const onVerificationPressed = () => {
+        console.warn('Add support for account verification.');
+    }
 
     return (
         <>
@@ -84,7 +86,3 @@ const ProfileMainSection = ({ onSectionPress }) => {
 }
 
 export default ProfileMainSection;
-function dispatch() {
-    throw new Error('Function not implemented.');
-}
-

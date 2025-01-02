@@ -90,8 +90,7 @@ const LogInScreen = () => {
 
             api.user.login(payload)
                 .then((user) => {
-                    dispatch(userReset());
-                    // dispatch(userLoggedIn(user));
+                    dispatch(userLoggedIn(user));
                     console.log('USER DATA:::', user);
                     // Handle successful login, like navigating to another screen or setting user state
                 })
