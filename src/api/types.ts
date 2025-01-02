@@ -1,11 +1,6 @@
-import { AxiosResponse } from 'axios';
-
-export type TApiResult = {
-	result: any
+export interface IApiMethods {
+	get: (url: string) => Promise<any>;
+	remove: (url: string) => Promise<any>;
+	post: (url: string, data: any) => Promise<any>;
+	patch: (url: string, data: any) => Promise<any>;
 }
-
-export type TApiData = {
-	data: TApiResult
-}
-
-export type TApiResponse = TApiData & AxiosResponse;

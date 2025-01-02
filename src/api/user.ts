@@ -1,27 +1,23 @@
-import axios from 'axios';
-import axiosRetry from 'axios-retry';
+import { IApiMethods } from './types';
 
-import config from './../config';
-import { TApiResponse } from './types';
+const user = ({ post, get, remove, patch }: IApiMethods 	  	) => {
+	const signup = (credentials: any) => post('/users/register', credentials);
 
-axios.defaults.baseURL = config.api.base_url;
+	const login = (credentials: any) => post('/users/auth', credentials);
 
-axiosRetry(axios, {
-    retries: config.api.retry_count,
-    retryCondition: axiosRetry.isRetryableError,
-});
+	const confirm = (token: string) => post('/users/confirm', { token });
 
-const user = {
-	login: credentials => axios.post(`/users/auth`, credentials, { withCredentials: true })
-		.then(({ data }: TApiResponse) => data.result),
-	signup: credentials => axios.post(`/users/register`, credentials, { withCredentials: true })
-		.then(({ data }: TApiResponse) => data.result),
-	confirm: token => axios.post(`/users/confirm`, { token })
-		.then(({ data }: TApiResponse) => data.result),
-	resetPassword: data => axios.post(`/users/recover`, data)
-		.then(({ data }: TApiResponse) => data),
-	fetchCurrentUser: () => axios.get(`/users/account`)
-		.then(({ data }: TApiResponse) => data?.result),
+	const resetPassword = (data: any) => post('/users/recover', data);
+
+	const fetchCurrentUser = () => get('/users/account');
+
+	return {
+		login,
+		signup,
+		confirm,
+		resetPassword,
+		fetchCurrentUser,
+	};
 };
 
 export default user;
