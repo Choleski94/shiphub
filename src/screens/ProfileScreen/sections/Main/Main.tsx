@@ -1,13 +1,18 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
+import { useNavigation } from '@react-navigation/native';
 import { View, Text, TouchableOpacity } from 'react-native';
 
 import styles from './../../ProfileScreen.styled';
+import { userLoggedOut } from '../../../../store/actions/user';
 import { Card, Illustration, Button } from '../../../../components';
 import { DEFAULT_PROFILE_OPTIONS, DEFAULT_PROFILE_SECTIONS } from './../../ProfileScreen.controller';
 
 const ProfileMainSection = ({ onSectionPress }) => {
+    const dispatch = useDispatch();
     const { t } = useTranslation();
+    const navigation = useNavigation();
 
     const messages = React.useMemo(() => ({
         [DEFAULT_PROFILE_SECTIONS.EMAIL]: t('screen.profile-main.option.email.header.text'),
@@ -20,7 +25,8 @@ const ProfileMainSection = ({ onSectionPress }) => {
     }, []);
 
     const onLogOutPressed = () => {
-
+        dispatch(userLoggedOut());
+        navigation.navigate("LogInScreen");
     }
 
     const onVerificationPressed = () => {}
@@ -78,3 +84,7 @@ const ProfileMainSection = ({ onSectionPress }) => {
 }
 
 export default ProfileMainSection;
+function dispatch() {
+    throw new Error('Function not implemented.');
+}
+

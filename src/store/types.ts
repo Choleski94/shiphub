@@ -3,12 +3,18 @@ export const NAV_TIME_SET = "NAV_TIME_SET";
 
 export const NAV_ORIGIN_SET = "NAV_ORIGIN_SET";
 
+export const NAV_TIME_RESET = "NAV_TIME_RESET";
+
 export const NAV_DESTINATION_SET = "NAV_DESTINATION_SET";
 
 // App
+export const APP_RESET = "APP_RESET";
+
 export const APP_LOADING = "APP_LOADING";
 
 // User
+export const USER_RESET = "USER_RESET";
+
 export const USER_FETCHED = "USER_FETCHED";
 
 export const USER_LOGGED_IN = "USER_LOGGED_IN";
@@ -18,7 +24,7 @@ export const USER_LOGGED_OUT = "USER_LOGGED_OUT";
 // Workspace
 export const WORKSPACE_SET = "WORKSPACE_SET";
 
-export const WORKSPACE_CLEAR = "WORKSPACE_CLEAR";
+export const WORKSPACE_RESET = "WORKSPACE_RESET";
 
 export const WORKSPACE_FETCHED = "WORKSPACE_FETCHED";
 

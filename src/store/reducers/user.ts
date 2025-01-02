@@ -1,22 +1,35 @@
 import * as actionTypes from "../types";
 
-export const userState = {
-  id: null,
-  email: null,
-  phone: null,
-  lastName: null,
-  firstName: null,
+export interface IUserState {
+  id: string;
+  email: string;
+  phone: string;
+  lastName: string;
+  firstName: string;
+  workspaces: any[];
+  isActivated: boolean;
+  isOnboarded: boolean;
+}
+
+export const userState: IUserState = {
+  id: "",
+  email: "",
+  phone: "",
+  lastName: "",
+  firstName: "",
+  workspaces: [],
   isActivated: true,
   isOnboarded: true,
-  workspaces: [],
 };
 
-const userReducer = (state = userState, action) => {
+const userReducer = (state: IUserState = userState, action) => {
   switch (action.type) {
+    case actionTypes.USER_RESET:
+      return userState;
     case actionTypes.USER_LOGGED_IN:
       return { ...state, ...action.user };
     case actionTypes.USER_LOGGED_OUT:
-      return { ...userState };
+      return userState;
     case actionTypes.USER_FETCHED:
       return { ...state, ...action.user };
     case actionTypes.FAILED_REQUEST:

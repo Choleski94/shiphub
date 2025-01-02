@@ -6,6 +6,14 @@
 	"screen.welcome.form.continue.text": "CONTINUE",
 
 
+	"form.validation.empty.error.text": "Can't be blank",
+	"form.validation.first-name.error.text": "Please enter a valid first name",
+	"form.validation.last-name.error.text": "Please enter a valid last name",
+	"form.validation.email.error.text": "Please enter a valid email",
+	"form.validation.password.error.text": "Please enter a valid 8 character long password",
+	"form.validation.password-confirm.error.text": "Password don't match",
+
+
 	"form.confirm.empty.error.text": "Can't be blank",
 	"form.confirm.first-name.error.text": "Please enter a valid first name",
 	"form.confirm.last-name.error.text": "Please enter a valid last name",

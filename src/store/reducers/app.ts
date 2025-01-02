@@ -1,12 +1,19 @@
 import * as actionTypes from "../types";
 
-export const appState = {
+export interface IAppState {
+  theme: string;
+  loading: boolean;
+}
+
+export const appState: IAppState = {
   theme: "light",
   loading: false,
 };
 
-const appReducer = (state = appState, action) => {
+const appReducer = (state: IAppState = appState, action) => {
   switch (action.type) {
+    case actionTypes.APP_RESET:
+      return appState;
     case actionTypes.APP_LOADING:
       return { ...state, ...action.app };
     default:

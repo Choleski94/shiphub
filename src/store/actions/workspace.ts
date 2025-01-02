@@ -1,10 +1,8 @@
 import * as actionTypes from "../types";
 
-export const workspaceClear = () => {
-  return {
-    type: actionTypes.WORKSPACE_CLEAR,
-  };
-};
+export const workspaceReset = () => ({
+  type: actionTypes.WORKSPACE_RESET,
+});
 
 export const workspaceSet = (workspace) => {
   return {
