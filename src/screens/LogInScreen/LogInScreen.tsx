@@ -5,11 +5,11 @@ import { View, ScrollView } from 'react-native';
 import { useForm, Controller } from 'react-hook-form';
 import { useNavigation } from '@react-navigation/native';
 
-import api from './../../api';
+import useApi from './../../api';
 import styles from './LogInScreen.styled';
 import { withPublicNav } from '../../utils/hocs';
 // import Logo from '../../../assets/images/Logo_1.png';
-import { userLoggedIn, userReset } from '../../store/actions/user';
+import { logInUser, userReset } from '../../store/actions/user';
 import { ScreenView, Typography, Grid, Button, Input } from '../../components';
 
 const validateEmail = (email: string, errorMessages: any) => {
@@ -19,6 +19,7 @@ const validateEmail = (email: string, errorMessages: any) => {
 };
 
 const LogInScreen = () => {
+    const api = useApi();
     const dispatch = useDispatch();
     const { t } = useTranslation();
     const navigation = useNavigation();
@@ -90,13 +91,10 @@ const LogInScreen = () => {
 
             api.user.login(payload)
                 .then((user) => {
-                    dispatch(userLoggedIn(user));
-                    console.log('USER DATA:::', user);
-                    // Handle successful login, like navigating to another screen or setting user state
+                    dispatch(logInUser(user));
                 })
                 .catch((error) => {
                     console.error('Login error:', error);
-                    // Handle login error (e.g., display error message to the user)
                 });
         });
     };

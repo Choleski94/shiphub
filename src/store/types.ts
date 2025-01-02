@@ -8,6 +8,8 @@ export const NAV_TIME_RESET = "NAV_TIME_RESET";
 export const NAV_DESTINATION_SET = "NAV_DESTINATION_SET";
 
 // App
+export const APP_SET = "APP_SET";
+
 export const APP_RESET = "APP_RESET";
 
 export const APP_LOADING = "APP_LOADING";

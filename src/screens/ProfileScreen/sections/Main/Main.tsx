@@ -5,7 +5,7 @@ import { useNavigation } from '@react-navigation/native';
 import { View, Text, TouchableOpacity } from 'react-native';
 
 import styles from './../../ProfileScreen.styled';
-import { userLoggedOut } from '../../../../store/actions/user';
+import { logOutUser } from '../../../../store/actions/user';
 import { Card, Illustration, Button } from '../../../../components';
 import { DEFAULT_PROFILE_OPTIONS, DEFAULT_PROFILE_SECTIONS } from './../../ProfileScreen.controller';
 
@@ -25,7 +25,7 @@ const ProfileMainSection = ({ onSectionPress }) => {
     }, []);
 
     const onLogOutPressed = () => {
-        dispatch(userLoggedOut());
+        dispatch(logOutUser());
         navigation.navigate("LogInScreen");
     }
 
