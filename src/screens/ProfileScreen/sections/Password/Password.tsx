@@ -1,30 +1,48 @@
 import React from 'react';
 import { View } from 'react-native';
+import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
+import { useForm, Controller } from 'react-hook-form';
 
+import useApi from '../../../../api';
 import styles from './../../ProfileScreen.styled';
 import { Card, Button, Grid, Input } from '../../../../components';
 
 const ProfilePasswordSection = ({ onSectionPress }) => {
+    const api = useApi();
+    const dispatch = useDispatch();
     const { t } = useTranslation();
-    const [data, setData] = React.useState({
-        password: '',
-        oldPassword: '',
+
+    const {
+        control,
+        handleSubmit,
+        formState: { errors, isSubmitting },
+    } = useForm({
+        defaultValues: {
+            password: '',
+            oldPassword: '',
+        },
+        mode: 'all',
     });
 
-    const onChangeValue = (value: string, key?: string) => {
-        if (!key || !key.length) return;
+    const errorMessages = {
+        empty: t('form.validation.empty.error.text'),
+        email: t('form.validation.email.error.text'),
+    };
 
-        setData({ ...data, [key]: value });
-    }
+    const onSubmit = (data: any) => {
+        // api.user.login(data)
+        //     .then((user) => {
+        //         dispatch(logInUser(user));
+        //     })
+        //     .catch((error) => {
+        //         console.error('Login error:', error);
+        //     });
+    };
 
-    const onSavePressed = () => {
-        onSectionPress();
-    }
+    const onSavePressed = () => handleSubmit(onSubmit)();
 
-    const onExitPressed = () => {
-        onSectionPress();
-    }
+    const onExitPressed = () => onSectionPress();
 
     return (
         <>
@@ -33,22 +51,66 @@ const ProfilePasswordSection = ({ onSectionPress }) => {
                 description={t('screen.profile-password.paragraph.text')}
             >
                 <Grid cols={1}>
-                    <Input
-                        type="PASSWORD"
+                    <Controller
                         name="oldPassword"
-                        value={data.oldPassword}
-                        setValue={onChangeValue}
-                        label={t('screen.profile-password.form.password.text')}
+                        control={control}
+                        rules={{
+                            required: errorMessages.empty,
+                            validate: (value) => {
+                                // First, check if the email is empty, then check for the format
+                                if (!value) {
+                                    return errorMessages.empty;
+                                }
+                                // if (!validateEmail(value)) {
+                                //     return t('form.validation.email.error.text'); // Custom error message for invalid email
+                                // }
+
+                                return true; // If email is valid, return true
+                            }
+                        }}
+                        render={({ field }) => (
+                            <Input
+                                type="PASSWORD"
+                                name="oldPassword"
+                                value={field.value}
+                                onBlur={field.onBlur}
+                                setValue={field.onChange}
+                                error={errors.oldPassword?.message}
+                                label={t('screen.profile-password.form.password.text')}
+                            />
+                        )}
                     />
                 </Grid>
 
                 <Grid cols={1}>
-                    <Input
-                        type="PASSWORD"
+                    <Controller
                         name="password"
-                        value={data.password}
-                        setValue={onChangeValue}
-                        label={t('screen.profile-password.form.password-new.text')}
+                        control={control}
+                        rules={{
+                            required: errorMessages.empty,
+                            validate: (value) => {
+                                // First, check if the email is empty, then check for the format
+                                if (!value) {
+                                    return errorMessages.empty;
+                                }
+                                // if (!validateEmail(value)) {
+                                //     return t('form.validation.email.error.text'); // Custom error message for invalid email
+                                // }
+
+                                return true; // If email is valid, return true
+                            }
+                        }}
+                        render={({ field }) => (
+                            <Input
+                                type="PASSWORD"
+                                name="password"
+                                value={field.value}
+                                onBlur={field.onBlur}
+                                setValue={field.onChange}
+                                error={errors.password?.message}
+                                label={t('screen.profile-password.form.password-new.text')}
+                            />
+                        )}
                     />
                 </Grid>
             </Card>
@@ -56,6 +118,7 @@ const ProfilePasswordSection = ({ onSectionPress }) => {
             <View style={styles.logout}>
                 <Button
                     type="PRIMARY"
+                    loading={isSubmitting}
                     onPress={onSavePressed}
                     text={t('screen.profile-main.save.text')}
                 />
