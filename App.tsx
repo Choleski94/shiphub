@@ -34,6 +34,7 @@ import store, { preloadedState, persistor } from './src/store';
 const stackScreenOptions = {
 	animation: 'none',
 	headerShown: false,
+	gestureEnabled: false,
 }
 
 // const store = configureStore({
