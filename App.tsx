@@ -37,11 +37,6 @@ const stackScreenOptions = {
 	gestureEnabled: false,
 }
 
-// const store = configureStore({
-// 	preloadedState,
-// 	reducer: rootReducer,
-// });
-
 const Stack = createNativeStackNavigator();
 
 const App = () => {
