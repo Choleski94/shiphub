@@ -32,7 +32,7 @@ const LogInScreen = () => {
             email: '',
             password: '',
         },
-        mode: 'onChange',
+        mode: 'all',
     });
 
     const errorMessages = {

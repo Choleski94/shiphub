@@ -34,7 +34,6 @@ const ProfilePasswordSection = ({ onSectionPress }) => {
             >
                 <Grid cols={1}>
                     <Input
-                        disabled
                         type="PASSWORD"
                         name="oldPassword"
                         value={data.oldPassword}

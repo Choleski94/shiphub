@@ -1,16 +1,29 @@
 import React from 'react';
 import { View } from 'react-native';
+import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
 import styles from './../../ProfileScreen.styled';
+import { selectUser } from '../../../../store/selectors/user';
 import { Card, Button, Grid, Input } from '../../../../components';
 
 const ProfileEmailSection = ({ onSectionPress }) => {
     const { t } = useTranslation();
+    const userData = useSelector(selectUser);
+
     const [data, setData] = React.useState({
         email: '',
         oldEmail: '',
     });
+
+    console.log('--->', userData)
+
+    React.useEffect(() => {
+        setData({
+            ...data,
+            oldEmail: userData.email
+        });
+    }, [userData]);
 
     const onChangeValue = (value: string, key?: string) => {
         if (!key || !key.length) return;
