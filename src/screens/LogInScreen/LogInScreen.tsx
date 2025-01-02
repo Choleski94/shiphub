@@ -8,14 +8,13 @@ import { useNavigation } from '@react-navigation/native';
 import useApi from './../../api';
 import styles from './LogInScreen.styled';
 import { withPublicNav } from '../../utils/hocs';
-// import Logo from '../../../assets/images/Logo_1.png';
-import { logInUser, userReset } from '../../store/actions/user';
+import { logInUser } from '../../store/actions/user';
 import { ScreenView, Typography, Grid, Button, Input } from '../../components';
 
-const validateEmail = (email: string, errorMessages: any) => {
+const validateEmail = (email: string) => {
     // Basic email validation logic
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email) || errorMessages.email;
+    return emailRegex.test(email);
 };
 
 const LogInScreen = () => {
@@ -26,8 +25,6 @@ const LogInScreen = () => {
 
     const {
         control,
-        trigger,
-        setError,
         handleSubmit,
         formState: { errors, isSubmitting },
     } = useForm({
@@ -38,68 +35,26 @@ const LogInScreen = () => {
         mode: 'onChange',
     });
 
-    // const [errors, setErrors] = React.useState({});
-    // const [loading, setLoading] = React.useState(false);
-    const [data, setData] = React.useState({
-        email: '',
-        password: '',
-    });
-
     const errorMessages = {
         empty: t('form.validation.empty.error.text'),
-        email: t('form.validation.email.error.text')
+        email: t('form.validation.email.error.text'),
     };
 
     const onForgotPasswordPressed = () => {
         navigation.navigate("ForgotPasswordScreen");
     };
 
-    const validate = (payload: any) => {
-        console.error('ERROOO:::', payload);
-
-        const errs: any = {};
-
-        // Check for empty input(s).
-        if (!payload.email) {
-            errs.email = errorMessages.empty;
-        }
-
-        if (!payload.password) {
-            errs.password = errorMessages.empty;
-        }
-
-        // TODO: Add Verify Email.
-        // if (payload.email) {
-        //     errs.email = errorMessages.email;
-        // }
-
-        return errs;
+    const onSubmit = (data: any) => {
+        api.user.login(data)
+            .then((user) => {
+                dispatch(logInUser(user));
+            })
+            .catch((error) => {
+                console.error('Login error:', error);
+            });
     };
 
-    const onChangeValue = (value: string, key?: string) => {
-        if (!key || !key.length) return;
-
-        const updatedData = { ...data, [key]: value };
-
-        setData(updatedData);
-        validate(updatedData);
-    }
-
-    const onSubmit = (payload: any) => {
-        trigger().then((isValid) => {
-            if (!isValid) return;
-
-            api.user.login(payload)
-                .then((user) => {
-                    dispatch(logInUser(user));
-                })
-                .catch((error) => {
-                    console.error('Login error:', error);
-                });
-        });
-    };
-
-    const onSignInPressed = () => onSubmit(data);
+    const onSignInPressed = () => handleSubmit(onSubmit)();
 
     const onRegisterPressed = () => navigation.navigate('RegisterScreen');
 
@@ -123,15 +78,24 @@ const LogInScreen = () => {
                             control={control}
                             rules={{
                                 required: errorMessages.empty,
-                                validate: validateEmail,
+                                validate: (value) => {
+                                    // First, check if the email is empty, then check for the format
+                                    if (!value) {
+                                        return errorMessages.empty;
+                                    }
+                                    if (!validateEmail(value)) {
+                                        return t('form.validation.email.error.text'); // Custom error message for invalid email
+                                    }
+                                    return true; // If email is valid, return true
+                                }
                             }}
-                            render={({ field: { onChange, onBlur, value } }) => (
+                            render={({ field }) => (
                                 <Input
                                     type="EMAIL"
                                     name="email"
-                                    value={value}
-                                    onBlur={onBlur}
-                                    setValue={onChange}
+                                    value={field.value}
+                                    onBlur={field.onBlur}
+                                    setValue={field.onChange}
                                     error={errors.email?.message}
                                     label={t('screen.login.form.email.text')}
                                 />
@@ -146,13 +110,13 @@ const LogInScreen = () => {
                             rules={{
                                 required: errorMessages.empty,
                             }}
-                            render={({ field: { onChange, onBlur, value } }) => (
+                            render={({ field }) => (
                                 <Input
                                     type="PASSWORD"
                                     name="password"
-                                    value={value}
-                                    onBlur={onBlur}
-                                    setValue={onChange}
+                                    value={field.value}
+                                    onBlur={field.onBlur}
+                                    setValue={field.onChange}
                                     error={errors.password?.message}
                                     label={t('screen.login.form.password.text')}
                                 />
@@ -163,7 +127,7 @@ const LogInScreen = () => {
                     <Grid cols={1}>
                         <Button
                             loading={isSubmitting}
-                            onPress={handleSubmit(onSubmit)}
+                            onPress={onSignInPressed}
                             text={t('screen.login.form.btn.login.text')}
                         />
                     </Grid>
