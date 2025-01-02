@@ -33,14 +33,14 @@ const ForgotPasswordScreen = () => {
     };
 
     const onSubmit = (data: any) => {
-        api.user.login(data)
-            .then(() => {
-                // dispatch(logInUser(user));
-                navigation.navigate('NewPasswordScreen');
-            })
-            .catch((error) => {
-                console.error('Login error:', error);
-            });
+        // api.user.login(data)
+        //     .then(() => {
+        //         // dispatch(logInUser(user));
+        //         navigation.navigate('NewPasswordScreen');
+        //     })
+        //     .catch((error) => {
+        //         console.error('Login error:', error);
+        //     });
     };
 
     const onSendPressed = () => handleSubmit(onSubmit)();
@@ -72,9 +72,9 @@ const ForgotPasswordScreen = () => {
                                     if (!value) {
                                         return errorMessages.empty;
                                     }
-                                    if (!validateEmail(value)) {
-                                        return t('form.validation.email.error.text'); // Custom error message for invalid email
-                                    }
+                                    // if (!validateEmail(value)) {
+                                    //     return t('form.validation.email.error.text'); // Custom error message for invalid email
+                                    // }
                                     return true; // If email is valid, return true
                                 }
                             }}
